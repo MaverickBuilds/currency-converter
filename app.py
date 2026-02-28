@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from datetime import datetime, timedelta
 import requests
+import os
 
 app = Flask(__name__)
 
@@ -185,7 +186,7 @@ def get_rates():
     api_error = None
     if last_fetch_time is None:
         try:
-            response = requests.get("https://v6.exchangerate-api.com/v6/96969edce2ff6bf8ba9f3088/latest/USD")
+            response = os.getenv("API_KEY")
             data = response.json()
             cached_rates = data
             last_fetch_time = datetime.now()
