@@ -198,7 +198,7 @@ def get_rates():
         time_passed = datetime.now() - last_fetch_time
         if time_passed > timedelta(hours=24):
             try:
-                response = requests.get("https://v6.exchangerate-api.com/v6/96969edce2ff6bf8ba9f3088/latest/USD")
+                response = os.getenv("API_KEY")
                 data = response.json()
                 cached_rates = data
                 last_fetch_time = datetime.now()
